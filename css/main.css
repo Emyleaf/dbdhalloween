@@ -1,0 +1,151 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    min-height: 100%; /* Ensures content takes up the full height */
+}
+
+body, html { 
+	overflow: hidden;
+}
+
+.hidden{
+    display: none;
+}
+
+.logo {
+    scale: 0.7
+}
+
+.bgimg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/img/bg.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    padding: 20px; /* Adds some padding for better spacing */
+}
+
+.progbar{
+	justify-self: center;
+	margin-top: 1em;
+}
+
+div#skillcheck {
+	margin: auto;
+	margin-top: 40vh;
+	width: 131px;
+	height: 131px;
+	transition-duration: 100ms;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+	/*background-image: url("./img/circle.png");*/
+}
+
+div#zone {
+	position: fixed;
+	width: 131px;
+	height: 131px;
+	background-image: url("/img/circlezone.png");
+	transform: rotate(-30deg);
+	opacity: 0.7;
+}
+
+div#tick {
+	position: fixed;
+	width: 10px;
+	height: 131px;
+	background: rgba(255,255,255,0);
+	transition-timing-function: linear;
+	transform-origin: 50% 0%;
+	transform: translate(60px, 65px) rotate(-180deg);
+}
+
+div#redtick {
+	width: 10px;
+	height: 100px;
+	position: fixed;
+	top: 15px;
+	background: #ff3333;
+	background: -webkit-radial-gradient(#ff3333, rgba(255,0,0,0.0), rgba(255,0,0,0));
+	background: -o-radial-gradient(#ff3333, rgba(255,0,0,0.0), rgba(255,0,0,0));
+	background: -moz-radial-gradient(#ff3333, rgba(255,0,0,0.0), rgba(255,0,0,0));
+	background: radial-gradient(#ff3333, rgba(255,0,0,0.0), rgba(255,0,0,0));
+}
+
+div#leftpanel {
+	position: fixed;
+	margin-left: 2rem;
+}
+
+div#points {
+	position: fixed;
+	width: 78px;
+	height: 78px;
+	background-image: url("/img/objectivepoints.png");
+	display: inline-block;
+}
+
+div#notiftitle {
+	position: fixed;
+	transform: translate(90px, 15px);
+	font-family: Arial, Helvetica, sans-serif;
+	color: #ffffff;
+}
+
+div#notifpoints {
+	position: fixed;
+	transform: translate(90px, 40px);
+	font-family: Arial, Helvetica, sans-serif;
+	color: #ff0000;
+}
+
+div.notifhidden {
+	transition: ease-in-out 500ms;
+	top: 35vh;
+	opacity: 0;
+}
+
+div.notifshown {
+	transition: ease-in-out 500ms;
+	top: 42vh;
+	opacity: 1;
+}
+
+div.notifvanish {
+	transition: ease-in-out 200ms;
+	top: 42vh;
+	opacity: 0;
+}
+
+#customkeyoverlay {
+	position: fixed;
+	margin-top: 50px;
+	margin-left: 14px;
+	background: #010000;
+	color: #757474;
+	border: 2px solid #d7d5d9;
+	border-radius: 7px;
+}
+
+.customkeytxt {
+	margin: 0;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-top: 4px;
+	margin-bottom: 3px;
+	font-weight: bold;
+	font-size: 18px;
+}

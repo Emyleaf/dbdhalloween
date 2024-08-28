@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dead by Daylight Halloween</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+
+	<div class="bgimg"></div>
+
+    <div class="content">
+
+        <div id="start" class="hero min-h-screen flex items-center justify-center">
+            <div class="hero-content text-center">
+                <div class="max-w mx-auto">
+                    <img class="max-w-full h-auto logo" src="./img/logo2.png" alt="image description">
+                    <h1 class="text-5xl md:text-8xl font-bold title">DEAD BY DAYLIGHT</h1>
+                    <p class="py-6 text-xl md:text-5xl">
+                        Riuscirai a riparare i generatori e a ottenere i tuoi regalini di Halloween?
+                    </p>
+                    <button onclick="startGeneration()" class="btn btn-warning btn-wide">Inizia</button>
+                </div>
+            </div>
+        </div>    
+
+        <audio id="scinc" src="./audio/scinc.mp3" type="audio/mpeg"></audio>
+        <audio id="sc150" src="./audio/sc150.mp3" type="audio/mpeg"></audio>
+        <audio id="sc50" src="./audio/sc50.mp3" type="audio/mpeg"></audio>
+        <audio id="sc0" src="./audio/sc0.mp3" type="audio/mpeg"></audio>
+
+        <div id="game" class="hero min-h-screen flex items-center justify-center hidden">
+            <div class="hero-content text-center grid grid-cols-1 gap-3">
+                <div id="sprites">
+                    <div class="grid grid-cols-2 gap-3">
+                    <img src="./img/killer.gif" alt="">
+                    <img src="./img/gen.gif">
+                    </div>
+                </div>
+
+                <div>
+                    <progress id="progress-bar" class="progress w-56 progbar" value="0" max="100"></progress>
+                </div>
+
+                <div id="skillcheck">
+                    <div id="zone"></div>
+                    <div id="tick">
+                        <div id="redtick"></div>
+                    </div>
+                    <div id="customkeyoverlay"><p class="customkeytxt">Touch</p></div>
+                </div>
+        
+                <div id="leftpanel" class="notifhidden">
+                    <div id="points"></div>
+                    <div id="notiftitle"></div>
+                    <div id="notifpoints"></div>
+                </div>
+            </div>
+        </div>   
+
+    </div>
+
+  <script src="./js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
+
+</body>
+</html>
