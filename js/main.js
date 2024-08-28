@@ -8,9 +8,9 @@ let lv3 = document.getElementById("lv3");
 let lv4 = document.getElementById("lv4");
 let exit = document.getElementById("exit");
 lv1.volume = 0.5;
-lv2.volume = 0.5;
-lv3.volume = 0.5;
-lv4.volume = 0.5;
+lv2.volume = 0.3;
+lv3.volume = 0.3;
+lv4.volume = 0.4;
 
 // Funzione per aggiornare la barra di progresso
 function updateProgressBar() {
@@ -110,22 +110,27 @@ function randomGeneration() {
 }
 
 function newZone() {
-    scInc.load(),
-    scInc.play(),
-    setTimeout(function() {
-        newRandomPos(),
-        zone.style.transform = "rotate(" + randomPos + "deg)",
-        newSkillCheck()
-    }, 500)
+    if(isPlaying == 1){
+        scInc.load(),
+        scInc.play(),
+        setTimeout(function() {
+            newRandomPos(),
+            zone.style.transform = "rotate(" + randomPos + "deg)",
+            newSkillCheck()
+        }, 500)
+    }
 }
 
 function newSkillCheck() {
-    isSkillCheckActive = false,
-    skillCheck.style.opacity = "1",
-    document.getElementById("zone").style.opacity = "0.7",
-    document.getElementById("tick").style.opacity = "1",
-    document.getElementById("customkeyoverlay").style.opacity = "1",
-    moveTick(26, 8)
+    if(isPlaying == 1){
+        isSkillCheckActive = false,
+        skillCheck.style.opacity = "1",
+        document.getElementById("zone").style.opacity = "0.7",
+        document.getElementById("tick").style.opacity = "1",
+        document.getElementById("customkeyoverlay").style.opacity = "1",
+        moveTick(26, 8)
+    }
+
 }
 
 function moveTick(a, b) {
@@ -236,9 +241,9 @@ function youwin(){
     clearInterval(intervalprogress);
 
     Swal.fire({
-        title: "<p class='text-red-500'><strong>L'Entità ha fame...</strong></p>",
+        title: "<h2 class='text-red-500'><strong>L'Entità ha fame...</strong></2>",
         html: "<p class='text-white'>Sei riuscita a fuggire!<br> Meriti un regalino!</p>",
-        imageUrl: "../img/exitgate.webp",
+        imageUrl: "./img/exitgate.webp",
         background: "rgb(24 24 27)",
         confirmButtonText: `
         Yupiii!
