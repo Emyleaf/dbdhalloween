@@ -1,14 +1,26 @@
 let progressBar = document.getElementById("progress-bar");
 let progress = 0;
 let intervalprogress;
+let isSkillCheckActive = true;
+let lv1 = document.getElementById("lv1");
+let lv2 = document.getElementById("lv2");
+let lv3 = document.getElementById("lv3");
+let lv4 = document.getElementById("lv4");
+let exit = document.getElementById("exit");
+lv1.volume = 0.5;
+lv2.volume = 0.5;
+lv3.volume = 0.5;
+lv4.volume = 0.5;
 
 // Funzione per aggiornare la barra di progresso
 function updateProgressBar() {
     if (progress < 100) { // Controlla se non ha raggiunto il 100%
         progress += 1; // Incrementa del 1%
         progressBar.value = progress; // Imposta il nuovo valore
+        checkSong();
     }
     if (progress >= 100){
+        isPlaying = 0;
         youwin();
     }
 }
@@ -23,9 +35,6 @@ function updateProgressBarBonus(a){
         }
         progressBar.value = progress;
     }
-    if (progress >= 100){
-        youWin();
-    }
 }
 
 function loseProgressBar(){
@@ -39,21 +48,65 @@ function loseProgressBar(){
     }
 }
 
+function isPlay(a) {
+    return !a.paused;
+}
+
+function checkSong(){
+    if (progress >= 0 && progress <= 25){
+        if(isPlay(lv1) == false){
+            lv2.pause(),
+            lv2.currentTime = 0;
+            lv1.load(),
+            lv1.play();
+        }
+    } else if (progress > 25 && progress <= 50){
+        if(isPlay(lv2) == false){
+            lv1.pause(),
+            lv1.currentTime = 0;
+            lv3.pause(),
+            lv3.currentTime = 0;
+            lv2.load(),
+            lv2.play();
+        }
+    } else if (progress > 50 && progress <= 75){
+        if(isPlay(lv3) == false){
+            lv2.pause(),
+            lv2.currentTime = 0;
+            lv4.pause(),
+            lv4.currentTime = 0;
+            lv3.load(),
+            lv3.play();
+        }
+    } else if (progress > 75){
+        if(isPlay(lv4) == false){
+            lv3.pause(),
+            lv3.currentTime = 0;
+            lv4.load(),
+            lv4.play();
+        }
+    }
+}
+
 function startGeneration() {
     document.getElementById("start").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
-
-    isPlaying = 1;
     
+    isPlaying = 1;
+
     intervalprogress = setInterval(updateProgressBar, 1000);
+    lv1.load(),
+    lv1.play();
     randomGeneration();
 }
 
 function randomGeneration() {
-    var intervalspawn = Math.floor(3000 * Math.random() + 2000);
-    setTimeout(function() {
-        newZone()
-    }, intervalspawn)
+    if(isPlaying == 1){
+        var intervalspawn = Math.floor(3000 * Math.random() + 2000);
+        setTimeout(function() {
+            newZone()
+        }, intervalspawn)
+    }
 }
 
 function newZone() {
@@ -67,6 +120,7 @@ function newZone() {
 }
 
 function newSkillCheck() {
+    isSkillCheckActive = false,
     skillCheck.style.opacity = "1",
     document.getElementById("zone").style.opacity = "0.7",
     document.getElementById("tick").style.opacity = "1",
@@ -82,13 +136,9 @@ function moveTick(a, b) {
         setTimeout(resetSC, 500))) : 1 == isStopped && (isStopped = 0)
     }, a)
 }
-function keydown(a) {
-    a.keyCode == customKey && (isPressed = !0,
-    isStopped = 1,
-    testZoneMatch(),
-    setTimeout(resetSC, 500))
-}
+
 function resetSC() {
+    isSkillCheckActive = true;
     skillCheck.style.opacity = "0",
     document.getElementById("zone").style.opacity = "0",
     document.getElementById("tick").style.opacity = "0",
@@ -115,6 +165,8 @@ function testZoneMatch() {
     sc0.play()) : degSC >= -22 + randomPos && (loseProgressBar(),
     sc0.load(),
     sc0.play());
+
+    isSkillCheckActive = true;
     
     randomGeneration();
 }
@@ -157,23 +209,41 @@ document.body.addEventListener("keydown", keydown);
 
 document.body.addEventListener("touchstart", handleTouch);
 
+function keydown(a) {
+    a.keyCode == customKey && !isSkillCheckActive && (isPressed = !0,
+    isStopped = 1,
+    testZoneMatch(),
+    setTimeout(resetSC, 500))
+}
+
 function handleTouch() {
-    if (isPlaying == 1){
-        isPressed = true;
-        isStopped = 1;
-        testZoneMatch();
-        setTimeout(resetSC, 500);
+    if (isPlaying == 1 && !isSkillCheckActive) {
+            isPressed = true;
+            isStopped = 1;
+            testZoneMatch();
+            setTimeout(resetSC, 500);
     }
 }
 
 function youwin(){
-    const element = document.getElementById("game");
-    element.remove();
+    lv1.pause();
+    lv2.pause();
+    lv3.pause();
+    lv4.pause();
+    exit.load();
+    exit.play();
+
     clearInterval(intervalprogress);
 
     Swal.fire({
-        title: "Brava!",
-        text: "Hai vinto un regalino!",
-        icon: "success"
+        title: "<p class='text-red-500'><strong>L'Entità ha fame...</strong></p>",
+        html: "<p class='text-white'>Sei riuscita a fuggire!<br> Meriti un regalino!</p>",
+        imageUrl: "../img/exitgate.webp",
+        background: "rgb(24 24 27)",
+        confirmButtonText: `
+        Yupiii!
+      `,
+      }).then((result) => {
+        window.open("https://emyleaf.github.io/dbdhalloween", "_self"); // Opens in a new tab
       });
 }
