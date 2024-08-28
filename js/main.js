@@ -7,10 +7,6 @@ let lv2 = document.getElementById("lv2");
 let lv3 = document.getElementById("lv3");
 let lv4 = document.getElementById("lv4");
 let exit = document.getElementById("exit");
-lv1.volume = 0.4;
-lv2.volume = 0.1;
-lv3.volume = 0.1;
-lv4.volume = 0.2;
 
 // Funzione per aggiornare la barra di progresso
 function updateProgressBar() {
