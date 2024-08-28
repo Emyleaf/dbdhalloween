@@ -41,11 +41,13 @@ body, html {
 .progbar{
 	justify-self: center;
 	margin-top: 1em;
+	margin-bottom: 3rem;
 }
 
 div#skillcheck {
 	margin: auto;
-	margin-top: 40vh;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
 	width: 131px;
 	height: 131px;
 	transition-duration: 100ms;
