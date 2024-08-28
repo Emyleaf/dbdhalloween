@@ -1,6 +1,6 @@
 let progressBar = document.getElementById("progress-bar");
 let progress = 0;
-let intervalprogress = setInterval(updateProgressBar, 1000);
+let intervalprogress;
 
 // Funzione per aggiornare la barra di progresso
 function updateProgressBar() {
@@ -45,7 +45,7 @@ function startGeneration() {
 
     isPlaying = 1;
     
-    intervalprogress;
+    intervalprogress = setInterval(updateProgressBar, 1000);
     randomGeneration();
 }
 
