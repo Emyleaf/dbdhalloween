@@ -238,7 +238,7 @@ function youwin(){
 
     Swal.fire({
         title: "<h2 class='text-red-500'><strong>L'Entità ha fame...</strong></2>",
-        html: "<p class='text-white'>Sei riuscita a fuggire!<br> Meriti un regalino!</p>",
+        html: "<p class='text-white'>Sei riuscita a fuggire!<br> Meriti il regalinooo!</p>",
         imageUrl: "./img/exitgate.webp",
         background: "rgb(24 24 27)",
         confirmButtonText: `
